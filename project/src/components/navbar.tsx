@@ -9,13 +9,15 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import AdbIcon from '@mui/icons-material/Adb';
 import Button from '@mui/material/Button';
+import image from '../assests/img.jpg'
+import Image from 'next/image';
 
 function ResponsiveAppBar() {
-    const handleAddCheckin = () => {
-        console.log('Adding Checkin...');
-      };
+  const handleAddCheckin = () => {
+    console.log('Adding Checkin...');
+  };
   return (
-    <Box sx={{ marginBottom: '20px', marginLeft: '50px',marginTop: '10px', marginRight: '50px',borderRadius: '10px' }}>
+    <Box sx={{ marginBottom: '20px', marginLeft: '50px', marginTop: '10px', marginRight: '50px', borderRadius: '10px' }}>
       <AppBar position="static" sx={{ borderRadius: '10px' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -50,7 +52,12 @@ function ResponsiveAppBar() {
       </AppBar>
       <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box sx={{ position: 'relative', width: '100%', marginBottom: '20px' }}>
-          <img src="https://via.placeholder.com/2000x500" alt="Dummy Image" style={{ width: '100%', borderRadius: '10px' }} />
+          <Image src="/assests/img.jpg"
+            alt="Example Image"
+            width={500}
+            height={279}
+            objectFit={'fill'} 
+            />
         </Box>
       </Container>
     </Box>

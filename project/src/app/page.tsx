@@ -8,6 +8,7 @@ import CheckinList from '../components/checkInList';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 
+
 interface Checkin {
   id: string,
   name: string,
@@ -59,7 +60,7 @@ const HomePage = () => {
     <Box>
       <Navbar />
       <Box sx={{ position: 'relative', textAlign: 'center' }}>
-        <img src="./assets/img.jpg" alt="Landing" style={{ width: '100%', height: 'auto' }} />
+        
         <Button variant="contained" color="primary" onClick={handleOpen} sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
           Add Checkin
         </Button>
