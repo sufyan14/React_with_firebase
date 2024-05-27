@@ -1,114 +1,93 @@
-Getting Started
-Prerequisites
+## Getting Started with Next JS
+
+### Prerequisites
 
 Make sure you have the following installed:
 
-    Node.js (>= 12.x)
-    npm or Yarn
-    Firebase: Set up a Firebase project and obtain your Firebase configuration.
+- [Node.js](https://nodejs.org/) (>= 12.x)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+- [Firebase](https://firebase.google.com/): Set up a Firebase project and obtain your Firebase configuration.
 
-Installation
+### Installation
 
-    Clone the repository:
+1. Clone the repository:
 
-    bash
+    ```
+    git clone https://github.com/sufyan14/react_with_firebase.git
+    cd nextjs-project
+    ```
 
-git clone https://github.com/sufyan14/react_with_firebase.git
-cd react_with_firebase
+2. Install the dependencies:
 
-Install the dependencies:
+    ```
+    npm install
+    ```
 
-bash
+    or
 
-npm install
+    ```
+    yarn install
+    ```
 
-or
+3. Configure Firebase:
 
-bash
+    Copy your own Firebase configuration and paste it into the appropriate environment variables in your `.env.local` file:
 
-yarn install
+    ```
+    NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-auth-domain
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+    NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
+    ```
 
-Configure Firebase:
-
-
-makefile
-
-  apiKey: "AIzaSyA1_6x4samLoCIBTDG2O7ocf-66Y91BvXA",
-  authDomain: "react-checkins.firebaseapp.com",
-  projectId: "react-checkins",
-  storageBucket: "react-checkins.appspot.com",
-  messagingSenderId: "103621130626",
-  appId: "1:103621130626:web:30bda7bc9ef552b53d779b"
-
-Running the Development Server
+### Running the Development Server
 
 Start the development server with the following command:
 
-bash
+    ```
+    npm run dev
+    ```
 
-npm run dev
+    or
 
-or
+    ```
+    yarn dev
+    ```
 
-bash
+Open [http://localhost:3000](http://localhost:3000) in your browser to see your application running.
 
-yarn dev
-
-Open http://localhost:3000 in your browser to see your application running.
-Building for Production
+### Building for Production
 
 To create an optimized production build, run:
 
-bash
+    ```
+    npm run build
+    ```
 
-npm run build
+    or
 
-or
+    ```
+    yarn build
+    ```
 
-bash
+### Deploying to Vercel
 
-yarn build
+Follow the [Vercel deployment documentation](https://vercel.com/docs) to deploy your application to Vercel.
 
-This will generate a .next folder with the compiled files. You can then start the production server with:
+## Project Structure
 
-bash
+- `app/`: Contains all the application routes and API endpoints.
+- `components/`: Reusable UI components.
+- `public/`: Static assets like images, fonts, etc.
+- `types/`: TypeScript type definitions.
 
-npm start
+## Acknowledgements
 
-or
-
-bash
-
-yarn start
-
-Deploying to Vercel
-
-Follow the Vercel deployment documentation to deploy your application to Vercel.
-Project Structure
-
-    pages/: Contains all the application routes and API endpoints.
-    components/: Reusable UI components.
-    styles/: Global and component-level styles.
-    public/: Static assets like images, fonts, etc.
-    lib/: Utility functions and custom hooks.
-    types/: TypeScript type definitions.
-
-Contributing
-
-Contributions are welcome! Please follow these steps:
-
-    Fork the repository.
-    Create a new branch (git checkout -b feature/your-feature-name).
-    Make your changes.
-    Commit your changes (git commit -m 'Add some feature').
-    Push to the branch (git push origin feature/your-feature-name).
-    Open a pull request.
-
-Acknowledgements
-
-    Next.js
-    React
-    TypeScript
-    Material-UI
-    Firebase
-    Vercel
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Material-UI](https://material-ui.com/)
+- [Firebase](https://firebase.google.com/)
+- [Vercel](https://vercel.com/)
