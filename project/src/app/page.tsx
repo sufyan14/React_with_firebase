@@ -8,15 +8,33 @@ import CheckinList from '../components/checkInList';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 
+interface Checkin {
+  id: string,
+  name: string,
+  description: string,
+  image: string,
+  user: string
+}
+
 const HomePage = () => {
+  
   const [open, setOpen] = useState(false);
-  const [checkins, setCheckins] = useState([]);
-  const [newCheckin, setNewCheckin] = useState({ name: '', description: '', image: '', user: '' });
+  const [checkins, setCheckins] = useState<Checkin[]>([]);
+  const [newCheckin, setNewCheckin] = useState({ id: '', name: '', description: '', image: '', user: '' });
 
   useEffect(() => {
     const fetchCheckins = async () => {
       const querySnapshot = await getDocs(collection(db, 'checkins'));
-      const checkinList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const checkinList: Checkin[] = querySnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          name: data.name,
+          description: data.description,
+          image: data.image,
+          user: data.user,
+        };
+      });
       setCheckins(checkinList);
     };
 
