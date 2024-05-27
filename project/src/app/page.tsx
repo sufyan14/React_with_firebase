@@ -1,15 +1,27 @@
 'use client';
 
 import { Box, Button } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import CheckinDialog from '../components/checkInDialog';
 import CheckinList from '../components/checkInList';
+import { db } from '../firebaseConfig';
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 
 const HomePage = () => {
   const [open, setOpen] = useState(false);
   const [checkins, setCheckins] = useState([]);
-  const [newCheckin, setNewCheckin] = useState({ name: '', description: '', image: '' });
+  const [newCheckin, setNewCheckin] = useState({ name: '', description: '', image: '', user: '' });
+
+  useEffect(() => {
+    const fetchCheckins = async () => {
+      const querySnapshot = await getDocs(collection(db, 'checkins'));
+      const checkinList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setCheckins(checkinList);
+    };
+
+    fetchCheckins();
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -19,9 +31,15 @@ const HomePage = () => {
     setOpen(false);
   };
 
-  const handleAddCheckin = () => {
-    setCheckins([...checkins, { ...newCheckin, id: Date.now() }]);
+  const handleAddCheckin = async () => {
+    const docRef = await addDoc(collection(db, 'checkins'), newCheckin);
+    setCheckins([...checkins, { ...newCheckin, id: docRef.id }]);
     setOpen(false);
+  };
+
+  const handleDeleteCheckin = async (id) => {
+    await deleteDoc(doc(db, 'checkins', id));
+    setCheckins(checkins.filter(checkin => checkin.id !== id));
   };
 
   return (
@@ -33,7 +51,7 @@ const HomePage = () => {
           Add Checkin
         </Button>
       </Box>
-      <CheckinList checkins={checkins} />
+      <CheckinList checkins={checkins} onDelete={handleDeleteCheckin} />
       <CheckinDialog open={open} handleClose={handleClose} handleAddCheckin={handleAddCheckin} newCheckin={newCheckin} setNewCheckin={setNewCheckin} />
     </Box>
   );

@@ -4,8 +4,8 @@ interface CheckinDialogProps {
   open: boolean;
   handleClose: () => void;
   handleAddCheckin: () => void;
-  newCheckin: { name: string, description: string, image: string };
-  setNewCheckin: (checkin: { name: string, description: string, image: string }) => void;
+  newCheckin: { name: string, description: string, image: string, user: string };
+  setNewCheckin: (checkin: { name: string, description: string, image: string, user: string }) => void;
 }
 
 const CheckinDialog = ({ open, handleClose, handleAddCheckin, newCheckin, setNewCheckin }: CheckinDialogProps) => {
@@ -40,6 +40,14 @@ const CheckinDialog = ({ open, handleClose, handleAddCheckin, newCheckin, setNew
           variant="outlined"
           value={newCheckin.image}
           onChange={(e) => setNewCheckin({ ...newCheckin, image: e.target.value })}
+        />
+        <TextField
+          margin="dense"
+          label="User"
+          fullWidth
+          variant="outlined"
+          value={newCheckin.user}
+          onChange={(e) => setNewCheckin({ ...newCheckin, user: e.target.value })}
         />
       </DialogContent>
       <DialogActions>
