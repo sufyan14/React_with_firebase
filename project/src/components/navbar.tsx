@@ -8,13 +8,24 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import AdbIcon from '@mui/icons-material/Adb';
-import Button from '@mui/material/Button';
-import image from '../assests/img.jpg'
 import Image from 'next/image';
 
 function ResponsiveAppBar() {
   const handleAddCheckin = () => {
     console.log('Adding Checkin...');
+  };
+  const imageContainerStyle: React.CSSProperties = {
+    position: 'relative',
+    width: '100%',
+    height: '400px',
+    overflow: 'hidden',
+    borderRadius: '15px',
+    marginTop: '20px',
+  };
+
+  const imageStyle: React.CSSProperties = {
+    transform: 'scale(1.2)',
+    objectPosition: 'center',
   };
   return (
     <Box sx={{ marginBottom: '20px', marginLeft: '50px', marginTop: '10px', marginRight: '50px', borderRadius: '10px' }}>
@@ -52,12 +63,15 @@ function ResponsiveAppBar() {
       </AppBar>
       <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box sx={{ position: 'relative', width: '100%', marginBottom: '20px' }}>
-          <Image src="/assests/img.jpg"
-            alt="Example Image"
-            width={500}
-            height={279}
-            objectFit={'fill'} 
+          <div style={imageContainerStyle}>
+            <Image
+              src="/assests/img.jpg"
+              alt="Example Image"
+              layout="fill"
+              objectFit="cover"
+              style={imageStyle}
             />
+          </div>
         </Box>
       </Container>
     </Box>
