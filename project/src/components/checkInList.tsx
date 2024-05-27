@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 interface Checkin {
   id: string;
@@ -10,10 +10,9 @@ interface Checkin {
 
 interface CheckinListProps {
   checkins: Checkin[];
-  onDelete: (id: string) => void;
 }
 
-const CheckinList = ({ checkins, onDelete }: CheckinListProps) => {
+const CheckinList = ({ checkins }: CheckinListProps) => {
   return (
     <Box sx={{ padding: 2, display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
       {checkins.map(checkin => (
@@ -47,9 +46,6 @@ const CheckinList = ({ checkins, onDelete }: CheckinListProps) => {
           <Typography sx={{ textAlign: 'center' }}>
             {checkin.description}
           </Typography>
-          <Button variant="contained" color="secondary" onClick={() => onDelete(checkin.id)} sx={{ marginTop: '10px' }}>
-            Delete
-          </Button>
         </Box>
       ))}
     </Box>

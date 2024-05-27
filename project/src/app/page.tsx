@@ -6,7 +6,7 @@ import Navbar from '../components/navbar';
 import CheckinDialog from '../components/checkInDialog';
 import CheckinList from '../components/checkInList';
 import { db } from '../firebaseConfig';
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 const HomePage = () => {
   const [open, setOpen] = useState(false);
@@ -37,21 +37,16 @@ const HomePage = () => {
     setOpen(false);
   };
 
-  const handleDeleteCheckin = async (id) => {
-    await deleteDoc(doc(db, 'checkins', id));
-    setCheckins(checkins.filter(checkin => checkin.id !== id));
-  };
-
   return (
     <Box>
       <Navbar />
       <Box sx={{ position: 'relative', textAlign: 'center' }}>
-        <img src="./assests/img.jpg" alt="Landing" style={{ width: '100%', height: 'auto' }} />
+        <img src="./assets/img.jpg" alt="Landing" style={{ width: '100%', height: 'auto' }} />
         <Button variant="contained" color="primary" onClick={handleOpen} sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
           Add Checkin
         </Button>
       </Box>
-      <CheckinList checkins={checkins} onDelete={handleDeleteCheckin} />
+      <CheckinList checkins={checkins} />
       <CheckinDialog open={open} handleClose={handleClose} handleAddCheckin={handleAddCheckin} newCheckin={newCheckin} setNewCheckin={setNewCheckin} />
     </Box>
   );
