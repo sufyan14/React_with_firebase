@@ -7,21 +7,12 @@ import CheckinDialog from '../components/checkInDialog';
 import CheckinList from '../components/checkInList';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
-
-
-interface Checkin {
-  id: string,
-  name: string,
-  description: string,
-  image: string,
-  user: string
-}
+import { Checkin } from '../components/types' // 
 
 const HomePage = () => {
-  
   const [open, setOpen] = useState(false);
   const [checkins, setCheckins] = useState<Checkin[]>([]);
-  const [newCheckin, setNewCheckin] = useState({ id: '', name: '', description: '', image: '', user: '' });
+  const [newCheckin, setNewCheckin] = useState<Checkin>({ name: '', description: '', image: '', user: '' });
 
   useEffect(() => {
     const fetchCheckins = async () => {
@@ -60,13 +51,18 @@ const HomePage = () => {
     <Box>
       <Navbar />
       <Box sx={{ position: 'relative', textAlign: 'center' }}>
-        
         <Button variant="contained" color="primary" onClick={handleOpen} sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
           Add Checkin
         </Button>
       </Box>
       <CheckinList checkins={checkins} />
-      <CheckinDialog open={open} handleClose={handleClose} handleAddCheckin={handleAddCheckin} newCheckin={newCheckin} setNewCheckin={setNewCheckin} />
+      <CheckinDialog
+        open={open}
+        handleClose={handleClose}
+        handleAddCheckin={handleAddCheckin}
+        newCheckin={newCheckin}
+        setNewCheckin={setNewCheckin}
+      />
     </Box>
   );
 };

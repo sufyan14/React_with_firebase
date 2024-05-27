@@ -1,11 +1,13 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Button } from '@mui/material';
+import { Checkin } from '../components/types'; 
 
 interface CheckinDialogProps {
   open: boolean;
   handleClose: () => void;
   handleAddCheckin: () => void;
   newCheckin: { name: string, description: string, image: string, user: string };
-  setNewCheckin: (checkin: { name: string, description: string, image: string, user: string }) => void;
+  setNewCheckin: Dispatch<SetStateAction<{ name: string, description: string, image: string, user: string }>>;
 }
 
 const CheckinDialog = ({ open, handleClose, handleAddCheckin, newCheckin, setNewCheckin }: CheckinDialogProps) => {

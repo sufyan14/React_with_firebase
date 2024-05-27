@@ -1,12 +1,5 @@
 import { Box, Typography } from '@mui/material';
-
-interface Checkin {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  user: string;
-}
+import { Checkin } from '../components/types'; 
 
 interface CheckinListProps {
   checkins: Checkin[];
