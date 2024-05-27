@@ -4,8 +4,8 @@ interface CheckinDialogProps {
   open: boolean;
   handleClose: () => void;
   handleAddCheckin: () => void;
-  newCheckin: { id: string, name: string, description: string, image: string, user: string };
-  setNewCheckin: (checkin: { id: string, name: string, description: string, image: string, user: string }) => void;
+  newCheckin: { name: string, description: string, image: string, user: string };
+  setNewCheckin: (checkin: { name: string, description: string, image: string, user: string }) => void;
 }
 
 const CheckinDialog = ({ open, handleClose, handleAddCheckin, newCheckin, setNewCheckin }: CheckinDialogProps) => {
